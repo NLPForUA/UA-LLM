@@ -32,6 +32,7 @@ This will create a new Conda environment called `ua-llm` with all the required d
 
 ```
 conda activate ua-llm
+pre-commit install
 ```
 
 ## Usage
