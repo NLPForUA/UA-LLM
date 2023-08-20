@@ -1,0 +1,10 @@
+name: ua-llm
+channels:
+  - conda-forge
+dependencies:
+  - python=3.8
+  - pytorch
+  - transformers>=4.31.0
+  - datasets>=2.14.4
+  - openai==0.27.8
+  - pre-commit==3.3.3
