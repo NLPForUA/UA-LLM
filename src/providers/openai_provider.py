@@ -4,6 +4,7 @@ import logging
 from typing import List
 
 import openai
+
 from providers.base_provider import BaseProvider
 
 
@@ -22,12 +23,12 @@ class OpenaiProvider(BaseProvider):
     def get_model(self, model_name) -> openai.api_resources.model.Model:
         model_list = self._get_model_list()
 
-        if 'data' not in model_list:
-            raise Exception('Failed to get model list from OpenAI')
+        if "data" not in model_list:
+            raise Exception("Failed to get model list from OpenAI")
 
-        models_data = model_list['data']
+        models_data = model_list["data"]
         for model_data in models_data:
-            if model_data['id'] == model_name:
+            if model_data["id"] == model_name:
                 return model_data
 
         return None
@@ -35,13 +36,14 @@ class OpenaiProvider(BaseProvider):
     def chat_completion(self, model: str, messages: List[dict]):
         if self.exceed_limits():
             logging.info(
-                f'Failed to call OpenAI API, exceeded limits: '
-                f'{self.get_session_usage()}',
+                f"Failed to call OpenAI API, exceeded limits: "
+                f"{self.get_session_usage()}",
             )
             return -1
 
         completion = openai.ChatCompletion.create(
-            model=model, messages=messages,
+            model=model,
+            messages=messages,
         )
 
         self.history.append((model, messages, completion))
