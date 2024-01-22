@@ -1,5 +1,5 @@
 from collections import defaultdict
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 import nltk
 from evaluate import load
@@ -11,9 +11,9 @@ TEXT_BASED_STRING_MATCHING = ["bleu", "rouge", "squad_v2"]
 
 
 class StringsEval(BaseEval):
-    def __init__(self, methods: list, bleu_max_order: List[int] = [1]):
+    def __init__(self, methods: list, bleu_max_order: Optional[List[int]] = None):
         super().__init__(methods)
-        self.bleu_max_order = bleu_max_order
+        self.bleu_max_order = bleu_max_order or [1]
         self.external_metrics = {}
         for method in methods:
             if method in TEXT_BASED_STRING_MATCHING:
