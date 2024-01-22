@@ -8,5 +8,5 @@ class BaseIO:
         self.file_path = os.path.join(get_original_cwd(), file_path)
         self.delimiter = delimiter
 
-    def run():
+    def run(self):
         pass
