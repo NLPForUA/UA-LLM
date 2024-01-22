@@ -1,15 +1,7 @@
 from __future__ import annotations
 
-from enum import Enum
-
-from llm.base_llm import BaseLLM
+from llm.base_llm import BaseLLM, PromptStrategy
 from providers.replicate_provider import ReplicateProvider
-
-
-class PromptStrategy(Enum):
-    NONE = "none"
-    SYSTEM_FIRST = "system_first"
-    SYSTEM_LAST = "system_last"
 
 
 class LLaMa(BaseLLM):
