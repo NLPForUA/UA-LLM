@@ -1,0 +1,7 @@
+_target_: llm.chatgpt.ChatGPT
+provider:
+  _target_: providers.openai_provider.OpenAIProvider
+  org_id: <OPENAI_ORG_ID>
+  api_key: <OPENAI_API_KEY>
+model_generation: gpt-4-1106-preview
+temperature: 0.0

@@ -1,0 +1,27 @@
+_target_: task.eval_task.EvalTask
+model: null
+evaluator:
+  _target_: eval.strings_eval.StringsEval
+  methods:
+    - exact
+    - partial
+    - any
+    - bleu
+    - rouge
+    - squad_v2
+    - control
+reader:
+  _target_: data.reader.csv_reader.CSVReader
+  file_path: dataset/gpt-4-turbo/en-ua-temp-0/squad_test_full.tsv
+  delimiter: "\t"
+writer:
+  _target_: data.writer.csv_writer.CSVWriter
+  file_path: dataset/gpt-4-turbo/en-ua-temp-0/squad_evaluations_full.tsv
+  delimiter: "\t"
+predictions_reader:
+  _target_: data.reader.csv_reader.CSVReader
+  file_path: dataset/gpt-4-turbo/en-ua-temp-0/squad_pred_full.tsv
+  delimiter: "\t"
+input_col: answer
+output_col: eval
+pred_col: prediction

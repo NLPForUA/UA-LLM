@@ -1,0 +1,22 @@
+defaults:
+  - _self_
+  - /model: chatgpt
+
+_target_: task.qa_predict_task.QAPredictTask
+model: chatgpt
+reader:
+  _target_: data.reader.csv_reader.CSVReader
+  file_path: dataset/gpt-4-turbo/en-ua-temp-0/squad_test_full.tsv
+  delimiter: "\t"
+writer:
+  _target_: data.writer.csv_writer.CSVWriter
+  file_path: dataset/gpt-4-turbo/en-ua-temp-0/squad_pred_full.tsv
+  delimiter: "\t"
+input_col: context
+output_col: prediction
+question_col: question
+prompt: >
+  You are an extractive question-answering model for the Ukrainian
+  language trained on the SQuAD dataset. Extract an answer for the
+  question from the context and output it starting with the "answer:"
+  keyword.\n\ncontext: {context}\n\nquestion: {question}\n\nanswer:
