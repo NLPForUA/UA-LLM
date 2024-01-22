@@ -1,0 +1,17 @@
+defaults:
+  - _self_
+  - /model: chatgpt
+
+_target_: task.qa_annotate_task.QAAnnotateTask
+model: control
+reader:
+  _target_: data.reader.csv_reader.CSVReader
+  file_path: dataset/annotate/gpt-3.5/annotations-v2.tsv
+  delimiter: "\t"
+writer:
+  _target_: data.writer.csv_writer.CSVWriter
+  file_path: dataset/annotate/gpt-3.5/predictions-v2.tsv
+  delimiter: "\t"
+input_col: context
+output_col: prediction
+question_col: question
