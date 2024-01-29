@@ -32,20 +32,49 @@ This will create a new Conda environment called `ua-llm` with all the required d
 
 ```
 conda activate ua-llm
-pre-commit install
+pre-commit install  # required only for contributors
 ```
 
 ## Usage
 
-TBD
+Get your access credentials from LLM provider.
+
+Go to the source code directory:
+```
+cd src
+```
+
+Fill in the model configs with obtained credentials. See example command below for OpenAI provider.
+```
+python tools/set_auth.py --openai_org_id <your_org> --openai_api_key <your_api_key>
+```
+or use the command similar to the following one for any other supported LLM provider (run with `--help` to see the arguments list).
+```
+python tools/set_auth.py --cohere_api_key <your_api_key>
+```
+
+Run example task to get predictions and evaluate them (Note, that you will be charged by LLM provider for each request, so it's better to run the next command with trial subscription or api key):
+```
+python main.py +task=qa_eval_task
+```
+As a result, you will get the following output:
+
+![eval_task](resrc/eval_task.jpg)
+
+Feel free to explore evaluation task config and other files in `configs/` directory to get more details about the task and how it works. You may also want to learn more about [Hydra framework](https://hydra.cc/docs/intro/) and [OmegaConf](https://omegaconf.readthedocs.io/en/2.3_branch/).
+
+Now you are ready to use your own datasets for evaluation or adapt any supported task for your specific needs.
 
 ## Supported LLMs
 
-TBD
+-   OpenAI GPT models
+-   Cohere Command
+-   Replicate.com models (LLaMA, Mistral, etc.)
 
 ## Supported tasks
 
-TBD
+-   Context-based Question Answering (CBQA)
+-   Context-based Question Answering data generation/annotation
 
 ## Contributing
 

@@ -34,5 +34,5 @@ class EvalTask(BaseTask):
         eval_data = self.reader.run(apply_fn={self.input_col: literal_eval})
 
         results = self.evaluator.run(predictions, eval_data[self.input_col])
-        print(results)
+        print("\n", results)
         self.writer.run(results)
