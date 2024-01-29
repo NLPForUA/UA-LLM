@@ -1,9 +1,9 @@
 defaults:
   - _self_
-  - /model: control
+  - /model: chatgpt
 
 _target_: task.predict_task.PredictTask
-model: control
+model: chatgpt
 reader:
   _target_: data.reader.csv_reader.CSVReader
   file_path: dataset/test.tsv
