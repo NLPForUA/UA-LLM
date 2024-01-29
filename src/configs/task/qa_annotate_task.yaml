@@ -3,15 +3,42 @@ defaults:
   - /model: chatgpt
 
 _target_: task.qa_annotate_task.QAAnnotateTask
-model: control
+model: chatgpt
 reader:
   _target_: data.reader.csv_reader.CSVReader
-  file_path: dataset/annotate/gpt-3.5/annotations-v2.tsv
+  file_path: dataset/examples/texts.tsv
   delimiter: "\t"
 writer:
   _target_: data.writer.csv_writer.CSVWriter
-  file_path: dataset/annotate/gpt-3.5/predictions-v2.tsv
+  file_path: dataset/examples/qa_annotations.tsv
   delimiter: "\t"
 input_col: context
 output_col: prediction
 question_col: question
+prompt: >
+  You are a model for annotating the SQuAD dataset in the Ukrainian language.
+  I will give you a context that starts with the keyword "context:" and you
+  will have to generate a question for this context starting with the keyword
+  "question:" as well as an answer starting with the "answer:" keyword. You
+  may only output the fragment of the original context as an answer. You are
+  not allowed to generate additional information or augment the answer span.
+  If there is no answer in the context, print "<no-answer>".\n\nExamples:\n\n
+  context: Такі фазозмінні матеріали, як парафін та сіль Ґлаубера, є ще одними
+  теплоносіями. Ці матеріали недорогі, легкодоступні та можуть забезпечувати
+  корисні для внутрішнього користування температури (приблизно 64 ° C або 147 ° F).
+  The "Dover House" (у Дуврі, штат Массачусетс) першим застосував систему нагрівання
+  солі Ґлаубера у 1948 р. Сонячна енергія також може зберігатися за високих температур
+  завдяки розплавленим солям. Солі є ефективним середовищем для зберігання, оскільки
+  вони недорогі, мають високу питому теплоємність і можуть подавати тепло за температур,
+  сумісних зі звичайними енергетичними системами. The Solar Two використовував цей метод
+  накопичення енергії, дозволяючи йому зберігати 1,44 тераджоуля (400 000 кВт/год) у своєму
+  резервуарі на 68 кубічних метрів із річною ефективністю зберігання близько 99%.
+  \n\nquestion: Де вперше була використана система нагрівання солі Ґлаубера?
+  \n\nanswer: The "Dover House"\n\ncontext: Національна комісія з історичних публікацій та
+  записів (NHPRC) - підрозділ агентства, що видає гранти - присуджує кошти державним та
+  місцевим органам влади, державним та приватним архівам, коледжам та університетам та
+  іншим некомерційним організаціям для збереження та публікації історичних записів. З 1964 р.
+  NHPRC надав близько 4500 грантів.\n\nquestion: Скільки грантів щорічно надає уряд?\n\nanswer:
+  <no-answer>\n\nAnnotate the context below, generate four positive questions with short answers
+  (extracted spans from the context) and one negative question without a correct answer in the
+  context (type "<no-answer>" as an answer):\n\ncontext: {context}

@@ -74,7 +74,13 @@ Now you are ready to use your own datasets for evaluation or adapt any supported
 ## Supported tasks
 
 -   Context-based Question Answering (CBQA)
+```
+python main.py +task=qa_predict_task
+```
 -   Context-based Question Answering data generation/annotation
+```
+python main.py +task=qa_annotate_task
+```
 
 ## Contributing
 
