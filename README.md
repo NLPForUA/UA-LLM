@@ -67,14 +67,14 @@ Now you are ready to use your own datasets for evaluation or adapt any supported
 
 ## Supported LLMs
 
-- OpenAI GPT models
-- Cohere Command
-- Replicate.com models (LLaMA, Mistral, etc.)
+-   OpenAI GPT models
+-   Cohere Command
+-   Replicate.com models (LLaMA, Mistral, etc.)
 
 ## Supported tasks
 
-- Context-based Question Answering (CBQA)
-- Context-based Question Answering data generation/annotation
+-   Context-based Question Answering (CBQA)
+-   Context-based Question Answering data generation/annotation
 
 ## Contributing
 
