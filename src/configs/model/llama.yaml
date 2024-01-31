@@ -1,0 +1,6 @@
+_target_: llm.llama.LLaMa
+provider:
+  _target_: providers.replicate_provider.ReplicateProvider
+  api_key: <REPLICATE_API_KEY>
+model_generation: meta/llama-2-13b-chat:de18b8b68ef78f4f52c87eb7e3a0244d18b45b3c67affef2d5055ddc9c2fb678
+temperature: 0.1

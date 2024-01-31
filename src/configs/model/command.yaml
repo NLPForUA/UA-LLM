@@ -1,0 +1,6 @@
+_target_: llm.command.Command
+provider:
+  _target_: providers.cohere_provider.CohereProvider
+  api_key: <COHERE_API_KEY>
+model_generation: command
+temperature: 0.0
